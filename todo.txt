@@ -1,0 +1,6 @@
+ X 1) SQL injection prevention
+ X 2) SSX prevention
+ _ 3) $_SESSION security 
+ _ 4) Argon2i hash http://www.hackinsight.org/news,567.html
+ _ 5) Add captcha https://www.phpcaptcha.org
+ _ 6) SSL http://www.uniformserver.com/ZeroXI_documentation/apache.html

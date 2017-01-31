@@ -1,5 +1,4 @@
 <?php
-
 //checks if user is logged in by checking  the session parameter
 function is_logged_in() {
     if (!empty($_SESSION["logged_in"])) {
