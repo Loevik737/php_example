@@ -24,8 +24,8 @@ if (is_logged_in()) {
     //the if statement
 } else if (!empty($_POST["submitted"])) {
     /* User is trying to log in */
-    $email = $_POST["email"];
-    $passwd = $_POST["password"];
+    $email = validate_input($_POST["email"]);
+    $passwd = validate_input($_POST["password"]);
     //preparing sql call that cant be sql injected
     $sql = $conn->prepare("SELECT name, password, ID FROM user WHERE email= ?");
     $sql->bind_param('s', $email);
