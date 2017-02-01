@@ -2,7 +2,7 @@
 
 # TODO 
  1. SQL injection prevention(Mysqli param binding)(DONE)
- 2. SSX prevention(input tester)(DONE)
+ 2. XSS prevention(input tester)(DONE)
  3. CSRF prevention(session tokens generated with bin2hex)(DONE)
  4. $_SESSION security
  5. Argon2i hash http://www.hackinsight.org/news,567.html  &&   https://wiki.php.net/rfc/argon2_password_hash
