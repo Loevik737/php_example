@@ -1,7 +1,7 @@
 <?php
 
-if (!empty($_POST["submitted"])) {
-    // User has pressed the submit button
+if (!empty($_POST["submitted"]) && $_POST["token"] === $_SESSION["token"]) {
+    // User has pressed the submit button and the session token matched
     //hashing the password with the recomended method, the PASSWORD_DEFAULT parameter is currently encrypting using bcrypt, but this will likely change to Argon2i later
     if (!empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["password"])) {
             //vallidation is needed. Now we just prevent ssx attacks
@@ -30,17 +30,18 @@ if (!empty($_POST["submitted"])) {
       <h2>Registrer ny bruker</h2>
       <form action="../index.php?feature=createUser" method="post">
           <div class="form-group">
-              <label for="name">Navn: </label>
+              <label for="name">Name: </label>
               <input class="form-control" type="text" name="name" id="name">
           </div>
           <div class="form-group">
-              <label for="email">Epost: : </label>
+              <label for="email">Email: : </label>
               <input class="form-control" type="email" name="email" id="email">
           </div>
           <div class="form-group">
-              <label for="password">Passord: </label>
+              <label for="password">Password: </label>
               <input class="form-control" type="password" name="password" id="password">
           </div>
           <input type="hidden" name="submitted" value="1" >
-          <input class="btn btn-success" type="submit" value="Registrer ny bruker" >
+          <input type="hidden" name="token" value=<?php echo $_SESSION["token"] ?> />
+          <input type="submit" value="Registrer ny bruker" >
       </form>

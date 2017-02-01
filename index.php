@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <?php
-  //start the session so we can check if a user is logged in or hare the right privelages later
-  session_start();
+//start the session so we can check if a user is logged in or hare the right privelages later
+//the token is to prevnt CSRF attacks
+session_start();
+if (empty($_SESSION['token'])) {
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+}
   //connect to the datavase via the connect.php script
   include("includes/connect.php");
   include("includes/validate.php");
@@ -29,7 +33,6 @@
           include("features/" . $_GET["feature"] . ".php");
         }
     }
-
     //if we cant find it we give the 404 page as a response
     else {
         include("404.php");
