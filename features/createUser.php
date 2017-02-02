@@ -4,7 +4,7 @@ if (!empty($_POST["submitted"]) && $_POST["token"] === $_SESSION["token"]) {
     // User has pressed the submit button and the session token matched
     //hashing the password with the recomended method, the PASSWORD_DEFAULT parameter is currently encrypting using bcrypt, but this will likely change to Argon2i later
     if (!empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["password"])) {
-            //vallidation is needed. Now we just prevent ssx attacks
+            //vallidation is needed. Now we just prevent xss attacks
             $email = validate_input($_POST['email']);
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT,["cost" => 12]);
             $name = validate_input($_POST['name']);
