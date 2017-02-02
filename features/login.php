@@ -29,7 +29,7 @@ if (is_logged_in()) {
     $passwd = validate_input($_POST["password"]);
     //preparing sql call that cant be sql injected
     //we may limit the things we request and rather request them after the login is confirmed?
-    $sql = $conn->prepare("SELECT name, password, ID FROM user WHERE email= ?");
+    $sql = $conn->prepare("SELECT password FROM user WHERE email= ?");
     $sql->bind_param('s', $email);
     //the sql call in now ready for the query
     $sql->execute();
@@ -39,13 +39,25 @@ if (is_logged_in()) {
         $row = mysqli_fetch_assoc($result);
         //using the recomended way of checking encrypted passwords
         if (password_verify($passwd, $row["password"])) {
-            //if the passwords match we save the session details in the sessin variable
-            $_SESSION["logged_in"] = TRUE;
-            $_SESSION["name"] = $row['name'];
-            $_SESSION["id"] = $row['ID'];
-            //generating a new token after login
-            $_SESSION['token'] = bin2hex(random_bytes(32));
-            log_in();
+          //if the passwords match we save the session details in the sessin variable
+              $sql = $conn->prepare("SELECT name, ID FROM user WHERE email= ?");
+              $sql->bind_param('s', $email);
+              //the sql call in now ready for the query
+              $sql->execute();
+              $result = $sql->get_result();
+              //if the query was successful we wil get more than 0 rows back
+              if (mysqli_num_rows($result) >= 1) {
+                 $row = mysqli_fetch_assoc($result);
+                 $_SESSION["logged_in"] = TRUE;
+                 $_SESSION["name"] = $row['name'];
+                 $_SESSION["id"] = $row['ID'];
+                 //generating a new token after login
+                 $_SESSION['token'] = bin2hex(random_bytes(32));
+                 log_in();
+              }
+              else{
+                  echo "Connection with the database lost";
+              }
             } else {
                 echo 'Invalid password';
             }

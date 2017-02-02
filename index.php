@@ -28,14 +28,19 @@ if (empty($_SESSION['token'])) {
         include("features/login.php");
     }
     //if fe pas a parameter to feature we wil try to bo to that location
-    else if (file_exists("features/" . $_GET["feature"] . ".php") && isset($_SESSION["logged_in"]) ) {
-        if($_SESSION["logged_in"]){
-          include("features/" . $_GET["feature"] . ".php");
+    else{
+      $feature = validate_input($_GET["feature"]);
+      if(file_exists("features/" . $feature . ".php")){
+        if( isset($_SESSION["logged_in"])){
+          if($_SESSION["logged_in"]){
+            include("features/" . $feature . ".php");
+          }
         }
-    }
-    //if we cant find it we give the 404 page as a response
-    else {
-        include("404.php");
+      }
+      //if we cant find it we give the 404 page as a response
+      else {
+          include("404.php");
+      }
     }
   ?>
   </section>
