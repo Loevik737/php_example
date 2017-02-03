@@ -9,8 +9,7 @@
  6. SSL http://www.uniformserver.com/ZeroXI_documentation/apache.html
  Checklist: http://stackoverflow.com/questions/28695117/what-should-a-secure-login-script-consist-of/28710255#28710255
 
-# IMPORTANT
-To get the captcha working you need to do this!
-1. Go to php.ini
-2. Find extension=ext/php_openssl.dll 
-3. Delete the semicolon(;) in front of it and save
+# For reCaptcha
+ 1. Go to php.ini
+ 2. Find extension=ext/php_openssl.dll 
+ 3. Delete the semicolon(;) in front of it and save
