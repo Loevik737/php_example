@@ -11,11 +11,6 @@
 
 # IMPORTANT
 To get the captcha working you need to do this!
-;;;;;;;;;;;;;;;;;;;;;;
-; Dynamic Extensions ;
-;;;;;;;;;;;;;;;;;;;;;;
-; ...
-;extension=ext/php_oci8.dll
-extension=ext/php_openssl.dll          <---- you want this
-;extension=ext/php_pdo_firebird.dll
-; ...
+1. Go to php.ini
+2. Find extension=ext/php_openssl.dll 
+3. Delete the semicolon(;) in front of it and save
