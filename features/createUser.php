@@ -11,7 +11,7 @@ if (!empty($_POST["submitted"]) && $_POST["token"] === $_SESSION["token"] ) {
     $captcha_success=json_decode($verify);
 
     if (!empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && $captcha_success->success==true) {
-            //vallidation is needed. Now we just prevent ssx attacks
+            //vallidation is needed. Now we just prevent xss attacks
             $email = validate_input($_POST['email']);
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT,["cost" => 12]);
             $name = validate_input($_POST['name']);
