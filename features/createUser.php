@@ -1,10 +1,17 @@
 <?php
 
-if (!empty($_POST["submitted"]) && $_POST["token"] === $_SESSION["token"]) {
+if (!empty($_POST["submitted"]) && $_POST["token"] === $_SESSION["token"] ) {
     // User has pressed the submit button and the session token matched
     //hashing the password with the recomended method, the PASSWORD_DEFAULT parameter is currently encrypting using bcrypt, but this will likely change to Argon2i later
-    if (!empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["password"])) {
-            //vallidation is needed. Now we just prevent xss attacks
+
+    //connecting to wertify that the user is not a bot
+    $secret="6LdqPBQUAAAAAHIWCVin52n43yvf-UsRGk7kpFlc";
+    $response= $_POST["g-recaptcha-response"];
+    $verify=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
+    $captcha_success=json_decode($verify);
+
+    if (!empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && $captcha_success->success==true) {
+            //vallidation is needed. Now we just prevent ssx attacks
             $email = validate_input($_POST['email']);
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT,["cost" => 12]);
             $name = validate_input($_POST['name']);
@@ -21,14 +28,17 @@ if (!empty($_POST["submitted"]) && $_POST["token"] === $_SESSION["token"]) {
             }
     }
     else{
-        echo("Venligst fyll ut alle feltene");
+        if($captcha_success->success==false) {
+          echo "You are a bot!";
+        }else{
+          echo("Venligst fyll ut alle feltene");
+        }
+      }
     }
 
-}
-
 ?>
-      <h2>Registrer ny bruker</h2>
-      <form action="../index.php?feature=createUser" method="post">
+      <h2>Registrer new user</h2>
+      <form action="../index.php?feature=createUser" method="post" enctype="multipart/form-data">
           <div class="form-group">
               <label for="name">Name: </label>
               <input class="form-control" type="text" name="name" id="name">
@@ -41,7 +51,11 @@ if (!empty($_POST["submitted"]) && $_POST["token"] === $_SESSION["token"]) {
               <label for="password">Password: </label>
               <input class="form-control" type="password" name="password" id="password">
           </div>
+          <!--Showing the captcha test for the user-->
+          <div class="captcha_wrapper">
+              <div class="g-recaptcha" data-sitekey="6LdqPBQUAAAAADoSCz0aH0sfbIcoyj9nT1MXt-cJ"></div>
+          </div>
           <input type="hidden" name="submitted" value="1" >
           <input type="hidden" name="token" value=<?php echo $_SESSION["token"] ?> />
-          <input type="submit" value="Registrer ny bruker" >
+          <input type="submit" value="Registrer new user" >
       </form>

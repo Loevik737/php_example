@@ -18,6 +18,8 @@ if (empty($_SESSION['token'])) {
   <meta name="description" content="">
   <meta name="author" content="">
   <title>User example</title>
+  <!--Adding googles reCaptcha-->
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 
