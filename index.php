@@ -20,6 +20,8 @@ if (empty($_SESSION['token'])) {
   <title>User example</title>
   <!--Adding googles reCaptcha-->
   <script src='https://www.google.com/recaptcha/api.js'></script>
+  <link rel="stylesheet" href="libs/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 

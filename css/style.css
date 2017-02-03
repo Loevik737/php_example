@@ -1,0 +1,14 @@
+form{
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.center{
+  width: 500px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+h2{
+  text-align: center;
+}

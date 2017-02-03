@@ -67,17 +67,22 @@ if (is_logged_in()) {
 } else {
     /*  */
 ?>
-
-<form action="../index.php" method="post">
-    <label for="inputEmail">Email</label>
-    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+<section class="center">
+  <h2> Login</h2>
+  <form action="../index.php" method="post">
+    <div class="form-group">
+      <label for="inputEmail">Email</label>
+      <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    </div>
     <input type="hidden" name="submitted" value="1" />
     <input type="hidden" name="token" value=<?php echo $_SESSION["token"] ?> />
-    <input type="submit" value="Logg inn"></label>
-</form>
-
+    <input class="btn btn-primary" type="submit" value="Logg inn"></label>
+  </form>
+ </section>
 <?php
 }
 ?>

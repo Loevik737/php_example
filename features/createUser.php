@@ -21,7 +21,7 @@ if (!empty($_POST["submitted"]) && $_POST["token"] === $_SESSION["token"] ) {
 
             //the sql call is now propperly prepared, and we're sending the user info to the databvase
             if ($sql->execute()) {
-                echo("Bruker lagt til");
+                echo("Ny bruker opprettet");
             }
             else {
                 echo("Eposten er allerede i bruk");
@@ -37,25 +37,27 @@ if (!empty($_POST["submitted"]) && $_POST["token"] === $_SESSION["token"] ) {
     }
 
 ?>
-      <h2>Registrer new user</h2>
-      <form action="../index.php?feature=createUser" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-              <label for="name">Name: </label>
-              <input class="form-control" type="text" name="name" id="name">
-          </div>
-          <div class="form-group">
-              <label for="email">Email: : </label>
-              <input class="form-control" type="email" name="email" id="email">
-          </div>
-          <div class="form-group">
-              <label for="password">Password: </label>
-              <input class="form-control" type="password" name="password" id="password">
-          </div>
-          <!--Showing the captcha test for the user-->
-          <div class="captcha_wrapper">
-              <div class="g-recaptcha" data-sitekey="6LdqPBQUAAAAADoSCz0aH0sfbIcoyj9nT1MXt-cJ"></div>
-          </div>
-          <input type="hidden" name="submitted" value="1" >
-          <input type="hidden" name="token" value=<?php echo $_SESSION["token"] ?> />
-          <input type="submit" value="Registrer new user" >
-      </form>
+      <section class="center">
+        <h2>Register new user</h2>
+        <form action="../index.php?feature=createUser" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Name: </label>
+                <input class="form-control" type="text" name="name" id="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email: </label>
+                <input class="form-control" type="email" name="email" id="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password: </label>
+                <input class="form-control" type="password" name="password" id="password">
+            </div>
+            <!--Showing the captcha test for the user-->
+            <div class="captcha_wrapper">
+                <div class="g-recaptcha" data-sitekey="6LdqPBQUAAAAADoSCz0aH0sfbIcoyj9nT1MXt-cJ"></div>
+            </div>
+            <input type="hidden" name="submitted" value="1" >
+            <input type="hidden" name="token" value=<?php echo $_SESSION["token"] ?> />
+            <input class="btn btn-primary" type="submit" value="Register new user" >
+        </form>
+      </section>
