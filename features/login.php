@@ -23,7 +23,7 @@ if (is_logged_in()) {
     log_in();
     //by pressing the submit button in the html the submitted parameter wil be set and we can contineue
     //the if statement if the token match
-} else if (!empty($_POST["submitted"]) && ($_POST["token"] === $_SESSION["token"])) {
+} else if (!empty($_POST["submitted"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && ($_POST["token"] === $_SESSION["token"])) {
     /* User is trying to log in */
     $email = validate_input($_POST["email"]);
     $passwd = validate_input($_POST["password"]);
@@ -72,11 +72,11 @@ if (is_logged_in()) {
   <form action="../index.php" method="post">
     <div class="form-group">
       <label for="inputEmail">Email</label>
-      <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <input type="email" name="email" id="inputEmail" class="form-control" placeholder="email..." required autofocus>
     </div>
     <div class="form-group">
       <label for="inputPassword">Password</label>
-      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="password..." required>
     </div>
     <input type="hidden" name="submitted" value="1" />
     <input type="hidden" name="token" value=<?php echo $_SESSION["token"] ?> />

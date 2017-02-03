@@ -42,15 +42,15 @@ if (!empty($_POST["submitted"]) && $_POST["token"] === $_SESSION["token"] ) {
         <form action="../index.php?feature=createUser" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Name: </label>
-                <input class="form-control" type="text" name="name" id="name">
+                <input class="form-control" type="text" name="name" id="name" placeholder="your name...">
             </div>
             <div class="form-group">
                 <label for="email">Email: </label>
-                <input class="form-control" type="email" name="email" id="email">
+                <input class="form-control" type="email" name="email" id="email" placeholder="your email address...">
             </div>
             <div class="form-group">
                 <label for="password">Password: </label>
-                <input class="form-control" type="password" name="password" id="password">
+                <input class="form-control" type="password" name="password" id="password" placeholder="a secure password...">
             </div>
             <!--Showing the captcha test for the user-->
             <div class="captcha_wrapper">
