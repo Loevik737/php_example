@@ -38,8 +38,13 @@ if (empty($_SESSION['token'])) {
         if( isset($_SESSION["logged_in"])){
           if($_SESSION["logged_in"]){
             include("features/" . $feature . ".php");
+          }else{
+              include("404.php");
           }
+        }else{
+            include("404.php");
         }
+
       }
       //if we cant find it we give the 404 page as a response
       else {
