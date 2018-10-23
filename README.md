@@ -1,5 +1,3 @@
-# php_example
-
 # TODO 
  1. SQL injection prevention(Mysqli param binding)(DONE)
  2. XSS prevention(input tester)(DONE)
